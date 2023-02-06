@@ -1,11 +1,17 @@
-sudo -i 
+if [[ "$(whoami)" != "root" ]]
+then
+	echo "use sudo"
+	exit
+fi 
+
+
 dpkg -i *.deb
 apt install -f
 dpkg -i *.deb
 cp /etc/squid/squid.conf /etc/squid/squid.conf.save
 rm /etc/squid/squid.conf
 
-Переместить squid.conf в /etc/squid
+cp squid.conf /etc/squid
 
 
 mkdir /etc/squid/lists
