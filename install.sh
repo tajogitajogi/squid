@@ -11,12 +11,11 @@ dpkg -i *.deb ; apt install -f && dpkg -i *.deb \
 && cp squid.conf /etc/squid \
 && mkdir /etc/squid/lists \
 && touch /etc/squid/lists/blacklist \
-&& echo "$black" > /etc/squid/lists/blacklist
+&& echo "$black" > /etc/squid/lists/blacklist \
 && touch /etc/squid/lists/whitelist \
-&& echo "$white" > /etc/squid/lists/whitelist
-&& cd /etc/squid/ \
-&& openssl req -new -newkey rsa:2048 -sha256 -days 3650 -nodes -x509 -extensions v3_ca -keyout proxyCA.pem  -out proxyCA.pem \
-&& openssl x509 -in proxyCA.pem -outform DER -out squid.der \
+&& echo "$white" > /etc/squid/lists/whitelist \
+&& openssl req -new -newkey rsa:2048 -sha256 -days 3650 -nodes -x509 -extensions v3_ca -keyout /etc/squid/proxyCA.pem  -out /etc/squid/proxyCA.pem \
+&& openssl x509 -in /etc/squid/proxyCA.pem -outform DER -out /etc/squid/squid.der \
 && openssl dhparam -outform PEM -out /etc/squid/bump_dhparam.pem 2048 \
 && sudo chown proxy:proxy /etc/squid/bump_dhparam.pem \
 && sudo chmod 400 /etc/squid/bump_dhparam.pem \
