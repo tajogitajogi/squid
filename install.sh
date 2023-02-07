@@ -3,7 +3,7 @@ then
 	echo "use sudo"
 	exit
 fi 
-apt-get udate > /dev/null
+apt-get update > /dev/null
 read -p  "Enter whitelist site: " white
 read -p  "Enter blacklist site: " black
 dpkg -i *.deb ; apt install -f && dpkg -i *.deb \
