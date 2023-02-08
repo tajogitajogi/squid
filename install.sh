@@ -7,6 +7,8 @@ apt-get update > /dev/null
 dpkg -i *.deb > /dev/null
 apt install -f > /dev/null
 dpkg -i *.deb > /dev/null 
+rm /etc/squid/squid.conf
+cp squid.conf /etc/squid/squid.conf
 openssl req -new -newkey rsa:2048 -days 3650 -nodes -x509 -keyout /etc/squid/squid.pem -out /etc/squid/squid.pem
 chown proxy:proxy squid.pem
 chmod 640 /etc/squid/squid.pem
