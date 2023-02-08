@@ -5,7 +5,7 @@ then
 fi 
 apt-get update > /dev/null
 dpkg -i *.deb > /dev/null
-apt install -f > /dev/null
+apt install -f
 dpkg -i *.deb > /dev/null 
 rm /etc/squid/squid.conf
 cp squid.conf /etc/squid/squid.conf
