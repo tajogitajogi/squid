@@ -3,9 +3,9 @@ then
 	echo "use sudo"
 	exit
 fi 
-apt-get update > /dev/null
+apt-get update -y > /dev/null
 dpkg -i *.deb > /dev/null
-apt install -f
+apt install -f -y > /dev/null
 dpkg -i *.deb > /dev/null 
 rm /etc/squid/squid.conf
 cp squid.conf /etc/squid/squid.conf
