@@ -2,7 +2,19 @@ if [[ "$(whoami)" != "root" ]]
 then
 	echo "use sudo"
 	exit
-fi 
+fi
+while true; do
+    read -p "Do you want to install with icap? " yn
+    case $yn in
+        [Yy]* ) read -p "Enter server ip? " serv;echo"icap_enable on
+icap_service service_req reqmod_precache bypass=1 icap://$serv/request
+adaptation_access service_req allow all
+icap_send_client_ip on
+icap_send_client_username on">>squid.conf; break;;
+	[Nn]* ) break;;
+        * ) echo "Please answer yes or no.";;
+    esac
+done
 apt-get update -y > /dev/null
 dpkg -i *.deb > /dev/null
 apt install -f -y > /dev/null
