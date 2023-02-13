@@ -4,17 +4,19 @@ then
 	exit
 fi
 while true; do
-    read -p "Do you want to install with icap? " yn
+    read -p "Do you want to install with icap? (Yy/Nn) " yn
     case $yn in
-        [Yy]* ) read -p "Enter server ip: " serv;echo "icap_enable on icap_service service_req reqmod_precache bypass=1 icap://$serv/request adaptation_access service_req allow all icap_send_client_ip on icap_send_client_username on"\
-	>>squid.conf; break;;
+        [Yy]* ) read -p "Enter server ip: " serv
+	echo "icap_enable on icap_service service_req reqmod_precache bypass=1 icap://$serv/request adaptation_access service_req allow all icap_send_client_ip on icap_send_client_username on"\
+	>>squid.conf 
+	break;;
 	[Nn]* ) break;;
-        * ) echo "Please answer yes or no.";;
+        * ) echo "Please answer Y/y or N/n.";;
     esac
 done
 apt-get update -y > /dev/null
 dpkg -i *.deb > /dev/null
-apt install -f -y > /dev/null
+apt install -f -y 
 dpkg -i *.deb > /dev/null 
 rm /etc/squid/squid.conf
 cp squid.conf /etc/squid/squid.conf
